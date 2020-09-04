@@ -29,11 +29,12 @@
         filteredAge.addEventListener('change', function() {
             // Since filterAge.value is a string, 
             // hence we must parse an Int to get the correct value
-            var value = parseInt(filteredAge.value);
+            var value = parseInt(filteredAge.value); // get the current value of the selected age
+            // filter the selected list by the selected value
             var filterArray = students.filter(function(student) {
                 return value === student.age;
             });
-
+            // re-render
             render(filterArray);
         })
 
