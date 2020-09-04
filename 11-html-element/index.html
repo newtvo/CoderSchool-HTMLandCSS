@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO list</title>
+</head>
+<body>
+    <h1>TODO list</h1>
+
+    <ul id="todo-list">
+        <li>Haircut</li>
+        <li>Lunch with Sora</li>
+        <li>Dinner with Maria</li>
+    </ul>
+
+    <script>
+        var todoList = document.getElementById('todo-list');
+        // insert a new todo to the list
+        var newToDo = document.createElement('li');
+        // update content of a list item
+        newToDo.textContent = 'Cook tomorrow dinner'
+       
+        todoList.appendChild(newToDo);
+        
+        // remove the last item from the list
+        newToDo.setAttribute("id", "lastItem");
+        var lastElem = document.getElementById("lastItem");
+        lastElem.remove();
+
+    </script>
+</body>
+</html>
