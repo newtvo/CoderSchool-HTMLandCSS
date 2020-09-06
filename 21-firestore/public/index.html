@@ -37,10 +37,15 @@
     <ul id="todo-list"></ul>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        var todoList = [];
+        
         var db = firebase.firestore();
         db.collection('todos').get().then(snap => {
-          render(snap.docs);
+          todoList = snap.docs;
+          render();
         })
+
+      
 
         var input = document.getElementById('new-item');
         var addButton = document.getElementById('add-btn');
@@ -51,28 +56,32 @@
         addButton.addEventListener('click', addItem);
 
         input.value = sessionStorage.getItem('draft');
-        input.addEventListener('change', updateSessionStorage);
+        // input.addEventListener('change', updateSessionStorage);
 
-        function updateSessionStorage() {
-          sessionStorage.setItem('draft', input.value);
-        }
+        // function updateSessionStorage() {
+        //   sessionStorage.setItem('draft', input.value);
+        // }
 
         function addItem() {
           // get the value of the input
-          var newItem = input.value;
+          var newItem = {
+            content: input.value
+          };
           // add item to the todoList array
-          todoList.push(newItem);
-          // re-render
-          render();
-          // clear the input value
-          input.value = '';
-          // local storage using key and value to set the data
-          //var storage = localStorage.setItem(storageKey, JSON.stringify(todoList));
+          db.collection('todos').add(newItem)
+            .then(docRef => { // document reference
+              return docRef.get(); // ở đây sẽ trả về 1 resolve và get() đc sử dụng để read input
+            })
+            .then(snap => { // snapshot từ trong db
+              todoList.push(snap);
+              render();
+              input.value = '';
+            })
         }
 
-        function render(items) {
+        function render() {
           var htmlList = document.getElementById('todo-list');
-          var content = items.map((item) => {
+          var content = todoList.map((item) => {
             var data = item.data();
             return "<li>" + data.content + "</li>";
           });
@@ -81,7 +90,7 @@
           // CLI --> Command Line Interface --> Web Interface
         }
 
-         render([]);
+         //render([]);
       });
     </script>
   </body>
