@@ -1,0 +1,32 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "content": "Go to work"
+    },
+    {
+      "id": 2,
+      "content": "Take a nap"
+    },
+    {
+      "id": 3,
+      "content": "Cook lunch"
+    },
+    {
+      "content": "Take Ni to school",
+      "id": 4
+    },
+    {
+      "content": "Eat hamburger",
+      "id": 5
+    },
+    {
+      "content": "Take out the garbage",
+      "id": 6
+    },
+    {
+      "content": "Ni hao",
+      "id": 7
+    }
+  ]
+}

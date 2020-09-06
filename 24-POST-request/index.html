@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO list</title>
+</head>
+
+<body>
+    <!-- <input id="new-item" type="text" />
+    <button id="add-btn">Add</button> -->
+    <a href="./new-item.html">New Item</a>
+
+    <ul id="todo-list">
+        <!-- <li>Take a shower</li>
+        <li>Have a walk</li>
+        <li>Go to bed</li> -->
+    </ul>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var url = 'http://localhost:9091/todos'
+        axios.get(url).then(function(res) {
+           var items = res.data;
+           render(items);
+        })
+        
+
+        // Not using onlick in HTML
+        var link = document.getElementById("new-link");
+
+        var input = document.getElementById('new-item');
+        var addButton = document.getElementById('add-btn');
+        // Option 1: 
+        // addButton.onclick = addItem;
+
+        // Option 2: Using addEventListener 
+        addButton.addEventListener('click', addItem);
+
+        function addItem() {
+            // get the value of the input
+            var newItem = {
+                content: input.value
+            };
+            // add item to the todoList array
+           axios.post(url, newItem).then(item => {
+               console.log(item);
+           })
+            // re-render
+            render();
+            // clear the input value
+            input.value = '';
+            // local storage using key and value to set the data
+            //var storage = localStorage.setItem(storageKey, JSON.stringify(todoList));
+        }
+
+        function render(items) {
+            var htmlList = document.getElementById('todo-list');
+            var content = items.map((item) => {
+                return "<li>" + item.content + "</li>";
+            });
+
+            htmlList.innerHTML = content.join('');
+            // CLI --> Command Line Interface --> Web Interface
+        }
+
+       // render();
+    </script>
+</body>
+
+</html>
