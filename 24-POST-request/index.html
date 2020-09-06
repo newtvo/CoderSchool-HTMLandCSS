@@ -25,7 +25,6 @@
            var items = res.data;
            render(items);
         })
-        
 
         // Not using onlick in HTML
         var link = document.getElementById("new-link");
@@ -36,24 +35,24 @@
         // addButton.onclick = addItem;
 
         // Option 2: Using addEventListener 
-        addButton.addEventListener('click', addItem);
+        // addButton.addEventListener('click', addItem);
 
-        function addItem() {
-            // get the value of the input
-            var newItem = {
-                content: input.value
-            };
-            // add item to the todoList array
-           axios.post(url, newItem).then(item => {
-               console.log(item);
-           })
-            // re-render
-            render();
-            // clear the input value
-            input.value = '';
-            // local storage using key and value to set the data
-            //var storage = localStorage.setItem(storageKey, JSON.stringify(todoList));
-        }
+        // function addItem() {
+        //     // get the value of the input
+        //     var newItem = {
+        //         content: input.value
+        //     };
+        //     // add item to the todoList array
+        //    axios.post(url, newItem).then(item => {
+        //        console.log(item);
+        //    })
+        //     // re-render
+        //     render();
+        //     // clear the input value
+        //     input.value = '';
+        //     // local storage using key and value to set the data
+        //     //var storage = localStorage.setItem(storageKey, JSON.stringify(todoList));
+        // }
 
         function render(items) {
             var htmlList = document.getElementById('todo-list');

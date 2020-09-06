@@ -12,22 +12,11 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var url = 'http://localhost:9091/todos'
-        // axios.get(url).then(function (res) {
-        //     var items = res.data;
-        //     render(items);
-        // })
-
-
-        // // Not using onlick in HTML
-        // var link = document.getElementById("new-link");
-        // window.location.href = './new-item.html';
+       
 
         var input = document.getElementById('new-item');
         var addButton = document.getElementById('add-btn');
-        // Option 1: 
-        // addButton.onclick = addItem;
-
-        // Option 2: Using addEventListener 
+      
         addButton.addEventListener('click', addItem);
 
         function addItem() {
@@ -39,12 +28,9 @@
             axios.post(url, newItem).then(item => {
                 console.log(item);
             })
-            // re-render
-            //render();
             // clear the input value
             input.value = '';
-            // local storage using key and value to set the data
-            //var storage = localStorage.setItem(storageKey, JSON.stringify(todoList));
+        
             window.location.href = './index.html';
         }
         
